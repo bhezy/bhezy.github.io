@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ben Hezrony — Engineer • Researcher • Builder</title>
+  <meta name="description" content="The personal site of Ben Hezrony — biomedical engineer and GPU/ML tinkerer. Projects, writing, and ways to connect." />
+  <meta name="theme-color" content="#0b0f19" />
+  <meta property="og:title" content="Ben Hezrony — Engineer • Researcher • Builder" />
+  <meta property="og:description" content="Portfolio, projects, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/583231?v=4" />
+  <meta property="og:url" content="https://your-username.github.io" />
+  <style>
+    :root{
+      --bg: #0b0f19;           /* base background */
+      --bg-elev: #101626;      /* elevated surfaces */
+      --text: #e6e9ef;         /* primary text */
+      --muted: #a9b1c6;        /* secondary text */
+      --accent: #7c93ff;       /* brand accent */
+      --accent-2: #00e0b8;     /* alt accent */
+      --card: #0f1424;         /* card background */
+      --border: #1b2236;       /* soft border */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius-lg: 26px;
+      --maxw: 1100px;
+      --pad: clamp(16px, 2.4vw, 24px);
+    }
+    .light{
+      --bg: #f8fafc;
+      --bg-elev: #ffffff;
+      --text: #0c1222;
+      --muted: #5b6476;
+      --accent: #3452ff;
+      --accent-2: #00b39f;
+      --card: #ffffff;
+      --border: #e6eaf2;
+      --shadow: 0 10px 30px rgba(18, 32, 73, .08);
+    }
+    html,body{height:100%}
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background:radial-gradient(1200px 800px at 20% -10%, #16203a 0%, transparent 60%),radial-gradient(1400px 900px at 120% 10%, #0c3d4f 0%, transparent 55%), var(--bg);
+      background-attachment: fixed;
+    }
+    .container{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad)}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px);
+      background: color-mix(in hsl, var(--bg) 70%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    nav a{color:var(--muted); text-decoration:none; margin-inline:14px; font-weight:600}
+    nav a:hover{color:var(--text)}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:linear-gradient(180deg, color-mix(in hsl, var(--card) 85%, transparent), var(--card)); box-shadow:var(--shadow)}
+    .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; padding:60px 0 32px; align-items:center}
+    .title{font-size: clamp(32px, 4.8vw, 56px); line-height:1.06; letter-spacing:-.02em; margin: 12px 0}
+    .subtitle{font-size: clamp(18px, 2.2vw, 22px); color:var(--muted); margin:0 0 22px}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+    .btn{cursor:pointer; padding:12px 18px; border-radius:14px; border:1px solid var(--border); background:var(--card); color:var(--text); font-weight:700; text-decoration:none; box-shadow:var(--shadow)}
+    .btn.primary{background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; border:none}
+    .btn:hover{transform:translateY(-1px)}
+    .avatar{width:160px; aspect-ratio:1; border-radius:50%; border:2px solid var(--border); box-shadow:var(--shadow); object-fit:cover}
+    .grid{display:grid; gap:18px}
+    .grid-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+    .grid-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px; font-size:20px}
+    .muted{color:var(--muted)}
+    section{padding: 26px 0 40px}
+    .section-title{font-size:26px; margin:0 0 8px}
+    .skills{display:flex; flex-wrap:wrap; gap:10px}
+    .skill{border:1px solid var(--border); background:var(--bg-elev); color:var(--text); padding:8px 12px; border-radius:12px; font-weight:600}
+    .footer{padding:26px 0 60px; border-top:1px dashed var(--border); color:var(--muted)}
+    .kpi{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+    .kpi .card{display:flex; flex-direction:column; align-items:flex-start}
+    .kpi .value{font-size:28px; font-weight:900}
+    .stack-icon{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; font-weight:900}
+    .repo-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
+    .repo{display:flex; flex-direction:column; gap:10px}
+    .repo .top{display:flex; align-items:center; justify-content:space-between}
+    .repo .meta{display:flex; gap:12px; align-items:center; color:var(--muted); font-weight:600}
+    .toggle{border:1px solid var(--border); background:var(--card); padding:10px 14px; border-radius:12px; font-weight:700}
+    .socials{display:flex; gap:10px}
+    .socials a{display:inline-grid; place-items:center; width:40px; height:40px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--text)}
+    .socials a:hover{transform:translateY(-1px)}
+    .pill{display:inline-flex; gap:6px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--bg-elev); font-weight:600}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr; text-align:center}
+      .hero .cta{justify-content:center}
+      .repo-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .kpi{grid-template-columns:1fr 1fr}
+      .avatar{margin-inline:auto}
+    }
+    /* entry animations */
+    .reveal{opacity:0; transform: translateY(8px); transition: all .6s cubic-bezier(.2,.8,.2,1)}
+    .reveal.visible{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header>
+    <div class="container">
+      <nav>
+        <div style="display:flex; align-items:center; gap:10px">
+          <span class="stack-icon">BH</span>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#writing">Writing</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center">
+          <button id="themeToggle" class="toggle" aria-label="Toggle theme">🌙</button>
+          <div class="socials" id="socials"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div>
+        <span class="badge reveal" style="--i:0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17l-5 3 1.9-5.9L4 9l6-.2L12 3l2 5.8 6 .2-4.9 5.1L17 20l-5-3z" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span id="roleLine">Engineer • Researcher • Builder</span>
+        </span>
+        <h1 class="title reveal" style="--i:1">Hi, I'm <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Ben Hezrony</span>.</h1>
+        <p class="subtitle reveal" style="--i:2">I design GPU-first systems for scientific computing and real‑time visualization. I like hard problems, clean interfaces, and shipping.</p>
+        <div class="cta reveal" style="--i:3">
+          <a class="btn primary" href="#projects">See Projects</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+        <div class="kpi" style="margin-top:22px">
+          <div class="card reveal"><span class="muted">Years building</span><span class="value" id="years">10+</span></div>
+          <div class="card reveal"><span class="muted">Public repos</span><span class="value" id="repoCount">—</span></div>
+          <div class="card reveal"><span class="muted">Stars gained</span><span class="value" id="starCount">—</span></div>
+          <div class="card reveal"><span class="muted">H‑index (code)</span><span class="value" id="hindex">—</span></div>
+        </div>
+      </div>
+      <div class="reveal" style="justify-self:center">
+        <img id="avatar" class="avatar" alt="Profile avatar" src="https://avatars.githubusercontent.com/u/9919?v=4"/>
+        <div style="display:flex; gap:10px; justify-content:center; margin-top:14px">
+          <span class="pill"><span>📍</span><span id="location">Earth</span></span>
+          <span class="pill"><span>💼</span><span id="work">Independent</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <p>I'm a biomedical engineer focused on hemodynamics, numerical methods, and ML for scientific computing. I enjoy vectorizing critical paths, squeezing performance from GPUs, and building tools that make complex systems feel simple.</p>
+          <p>On this page you'll find a sampling of recent work fetched live from my GitHub. I also write occasionally about performance tips, data viz, and practical research workflows.</p>
+        </div>
+        <div class="card reveal">
+          <div class="skills" id="skills"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+        <h2 class="section-title">Projects</h2>
+        <div style="display:flex; gap:8px">
+          <button class="toggle" id="sortRecent">Recent</button>
+          <button class="toggle" id="sortStars">Popular</button>
+        </div>
+      </div>
+      <div class="repo-grid" id="repoGrid"></div>
+      <div style="display:flex; justify-content:center; margin-top:16px">
+        <a class="btn" id="viewAll" href="#">View all repositories →</a>
+      </div>
+    </section>
+
+    <section id="writing">
+      <h2 class="section-title">Writing</h2>
+      <div class="grid grid-3" id="posts">
+        <div class="card reveal"><h3>Coming soon</h3><p class="muted">Hook this section to your blog/RSS or markdown posts in a <code>/posts</code> folder.</p></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <p>Want to collaborate, jam on research ideas, or chat about building fast systems? My inbox is open.</p>
+          <div class="cta">
+            <a class="btn primary" id="emailBtn" href="#">Email me</a>
+            <button class="btn" id="copyEmail">Copy email</button>
+          </div>
+        </div>
+        <div class="card reveal">
+          <p class="muted">Prefer scheduling? Add time directly to my calendar using your favorite tool. You can also reach me on the socials up top.</p>
+          <div class="skills" id="contactBadges"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+        <div>© <span id="year"></span> <strong id="nameFooter">Your Name</strong>. Built with modern, vanilla web tech. No frameworks, no tracking.</div>
+        <div style="display:flex; gap:8px; align-items:center">
+          <span class="muted">Theme</span>
+          <button class="toggle" id="themeToggleBottom">Toggle</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ======== CONFIG —— EDIT THIS BLOCK ========
+    const CONFIG = {
+      githubUser: "bhezy",              // ← your GitHub username
+      fullName: "Benjamin Shimon Hezrony, Ph.D.",            // ← your display name
+      roleLine: [
+        "Engineer • Researcher • Builder",
+        "GPU‑first scientific computing",
+        "Numerical methods • ML • Viz"
+      ],
+      email: "benhezrony@gmail.com",
+      location: "Durham, NC",
+      currentWork: "Duke University",
+      avatarUrl: "", // optional: custom avatar URL; defaults to GitHub avatar
+      resumeUrl: "", // optional: link to resume PDF
+      socials: {
+        github: "https://github.com/bhezy",
+        linkedin: "www.linkedin.com/in/benjamin-hezrony-ph-d-6a5283138",
+        website: "https://bhezy.github.io"
+        //x: "https://x.com/your-handle",
+        //scholar: "https://scholar.google.com/",
+      },
+      featuredSkills: ["CUDA", "TensorFlow", "MATLAB", "C++", "deal.II", "Kokkos", "PyVista/Trame", "PointNet++", "RAPIDS", "HDF5"],
+      contactBadges: ["Email", "LinkedIn", "GitHub", "Calendar"],
+      launchYear: 2015 // used for KPI
+    };
+    // ==========================================
+
+    const qs = s => document.querySelector(s);
+    const el = id => document.getElementById(id);
+
+    // Theme setup
+    const setTheme = (mode) => {
+      const root = document.documentElement;
+      if(mode === 'light'){ root.classList.add('light'); localStorage.setItem('theme','light'); }
+      else if(mode === 'dark'){ root.classList.remove('light'); localStorage.setItem('theme','dark'); }
+      else { // auto
+        localStorage.removeItem('theme');
+        if(window.matchMedia('(prefers-color-scheme: light)').matches) root.classList.add('light'); else root.classList.remove('light');
+      }
+      el('themeToggle').textContent = root.classList.contains('light') ? '☀️' : '🌙';
+      el('themeToggleBottom').textContent = root.classList.contains('light') ? 'Dark' : 'Light';
+    };
+
+    const initTheme = () => {
+      const saved = localStorage.getItem('theme');
+      setTheme(saved || 'auto');
+      el('themeToggle').onclick = () => setTheme(document.documentElement.classList.contains('light') ? 'dark' : 'light');
+      el('themeToggleBottom').onclick = () => setTheme(document.documentElement.classList.contains('light') ? 'dark' : 'light');
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', ()=> { if(!localStorage.getItem('theme')) setTheme('auto'); });
+    };
+
+    // Fancy role line typer
+    function typeCycle(lines, node, speed=45, pause=900){
+      let i=0; let forward=true; let txt=""; let li=0;
+      function step(){
+        const target = lines[li % lines.length];
+        if(forward){
+          txt = target.slice(0, i++);
+          if(i>target.length){ forward=false; setTimeout(step,pause); return; }
+        } else {
+          txt = target.slice(0, i--);
+          if(i<0){ forward=true; li++; i=0; setTimeout(step,300); return; }
+        }
+        node.textContent = txt || target.slice(0,1);
+        setTimeout(step, speed);
+      }
+      step();
+    }
+
+    // Reveal on scroll
+    function initReveal(){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: .08 });
+      [...document.querySelectorAll('.reveal')].forEach(n=>obs.observe(n));
+    }
+
+    // Social icons
+    const ICONS = {
+      github:`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 4.86 3.15 8.98 7.51 10.43.55.1.75-.24.75-.53v-1.86c-3.05.66-3.69-1.3-3.69-1.3-.5-1.27-1.22-1.6-1.22-1.6-.99-.67.07-.66.07-.66 1.1.08 1.68 1.12 1.68 1.12.97 1.67 2.55 1.19 3.17.91.1-.7.38-1.18.69-1.45-2.43-.28-4.99-1.22-4.99-5.42 0-1.2.43-2.18 1.14-2.95-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.12.9-.25 1.86-.37 2.82-.37.96 0 1.92.12 2.82.37 2.16-1.42 3.1-1.12 3.1-1.12.61 1.54.23 2.68.11 2.96.71.77 1.14 1.75 1.14 2.95 0 4.21-2.56 5.14-5 5.41.39.34.73 1.01.73 2.05v3.04c0 .29.2.64.75.53 4.36-1.45 7.51-5.57 7.51-10.43C23.02 5.24 18.27.5 12 .5z"/></svg>`,
+      linkedin:`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.96H3.73V20h3.21V8.96zM5.32 7.56a1.86 1.86 0 110-3.72 1.86 1.86 0 010 3.72zM20.27 20h-3.21v-5.58c0-1.33-.03-3.03-1.85-3.03-1.84 0-2.12 1.43-2.12 2.93V20h-3.2V8.96h3.07v1.5h.04c.43-.82 1.49-1.68 3.06-1.68 3.28 0 3.89 2.16 3.89 4.97V20z"/></svg>`,
+      x:`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.67 8.8L23 22h-7.1l-5.56-6.65L3.9 22H1l8.2-9.41L2 2h7.2l5.03 5.86L18.9 2zm-2.49 18h2.05L7.64 4H5.45l10.96 16z"/></svg>`,
+      scholar:`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 6-9 6-9-6 9-6zm0 8.5l7.5-5L12 3.5 4.5 6.5 12 11.5zM3 17l9 4 9-4-9-6-9 6z"/></svg>`,
+      website:`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.93 6h-3.08a15.9 15.9 0 00-1.28-3.58A8.03 8.03 0 0118.93 8zM12 4.06c.72.98 1.34 2.3 1.77 3.94H10.2c.43-1.64 1.05-2.96 1.8-3.94zM8.35 8H5.07a8.03 8.03 0 013.43-3.58C8.89 5.1 8.6 6.49 8.35 8zm0 2a27.6 27.6 0 000 4h7.3a27.6 27.6 0 000-4h-7.3zM5.07 16h3.28c.25 1.51.54 2.9 1.02 3.58A8.03 8.03 0 015.07 16zM12 19.94c-.72-.98-1.34-2.3-1.77-3.94h3.57c-.43 1.64-1.05 2.96-1.8 3.94zM15.65 16h3.28a8.03 8.03 0 01-4.3 3.58c.48-.68.77-2.07 1.02-3.58z"/></svg>`
+    };
+
+    function renderSocials(){
+      const wrap = el('socials');
+      wrap.innerHTML = '';
+      for(const [key, url] of Object.entries(CONFIG.socials)){
+        if(!url) continue;
+        const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noreferrer'; a.ariaLabel = key;
+        a.innerHTML = ICONS[key] || '<span style="font-size:12px">' + key + '</span>';
+        wrap.appendChild(a);
+      }
+    }
+
+    // GitHub data fetch
+    async function fetchGitHub(){
+      const user = CONFIG.githubUser;
+      const headers = { 'Accept': 'application/vnd.github+json' };
+      const u = await (await fetch(`https://api.github.com/users/${user}`, { headers })).json();
+      const repos = await (await fetch(`https://api.github.com/users/${user}/repos?per_page=100&sort=updated`, { headers })).json();
+      return { user: u, repos: Array.isArray(repos) ? repos : [] };
+    }
+
+    function computeHIndex(starCounts){
+      // h-index on stars: largest h where at least h repos have >= h stars
+      const sorted = starCounts.slice().sort((a,b)=>b-a);
+      let h=0; for(let i=0;i<sorted.length;i++){ if(sorted[i] >= i+1) h=i+1; else break; } return h;
+    }
+
+    function formatDate(s){
+      const d = new Date(s); return d.toLocaleDateString(undefined,{year:'numeric',month:'short'});
+    }
+
+    function repoCard(r){
+      const isFork = r.fork ? '<span class="pill">Fork</span>' : '';
+      return `
+        <article class="card repo reveal">
+          <div class="top">
+            <h3><a href="${r.html_url}" target="_blank" rel="noreferrer">${r.name}</a></h3>
+            ${isFork}
+          </div>
+          <p class="muted">${r.description || 'No description provided.'}</p>
+          <div class="meta">
+            <span>⭐ ${r.stargazers_count}</span>
+            <span>🛠 ${r.language || '—'}</span>
+            <span>⏱ ${formatDate(r.updated_at)}</span>
+          </div>
+        </article>`;
+    }
+
+    function renderRepos(repos, mode='recent'){
+      const grid = el('repoGrid');
+      let filtered = repos.filter(r=>!r.archived);
+      if(mode==='stars') filtered.sort((a,b)=>b.stargazers_count - a.stargazers_count);
+      else filtered.sort((a,b)=> new Date(b.pushed_at||b.updated_at) - new Date(a.pushed_at||a.updated_at));
+      grid.innerHTML = filtered.slice(0,9).map(repoCard).join('');
+      initReveal();
+    }
+
+    async function init(){
+      initTheme();
+      renderSocials();
+      el('year').textContent = new Date().getFullYear();
+      el('nameFooter').textContent = CONFIG.fullName;
+      el('roleLine').textContent = CONFIG.roleLine[0];
+      typeCycle(CONFIG.roleLine, el('roleLine'));
+      el('emailBtn').href = `mailto:${CONFIG.email}`;
+      el('copyEmail').onclick = async ()=>{ await navigator.clipboard.writeText(CONFIG.email); el('copyEmail').textContent = 'Copied!'; setTimeout(()=> el('copyEmail').textContent='Copy email', 1400); };
+      el('location').textContent = CONFIG.location;
+      el('work').textContent = CONFIG.currentWork;
+      el('viewAll').href = `https://github.com/${CONFIG.githubUser}?tab=repositories`;
+      el('skills').innerHTML = CONFIG.featuredSkills.map(s=>`<span class="skill">${s}</span>`).join('');
+      el('contactBadges').innerHTML = CONFIG.contactBadges.map(s=>`<span class="skill">${s}</span>`).join('');
+
+      // Fetch GitHub
+      try{
+        const { user, repos } = await fetchGitHub();
+        if(!CONFIG.avatarUrl) el('avatar').src = user.avatar_url;
+        el('repoCount').textContent = user.public_repos ?? repos.length;
+        const stars = repos.map(r=>r.stargazers_count||0);
+        const totalStars = stars.reduce((a,b)=>a+b,0);
+        el('starCount').textContent = totalStars;
+        el('hindex').textContent = computeHIndex(stars);
+        const years = new Date().getFullYear() - CONFIG.launchYear;
+        el('years').textContent = years + '+';
+
+        // Sort toggles
+        el('sortRecent').onclick = ()=> renderRepos(repos, 'recent');
+        el('sortStars').onclick = ()=> renderRepos(repos, 'stars');
+        renderRepos(repos, 'recent');
+      } catch(err){
+        console.error(err);
+        el('repoGrid').innerHTML = `<div class="card"><strong>Could not load repos.</strong><p class="muted">Check your <code>CONFIG.githubUser</code> or GitHub rate limiting.</p></div>`;
+      }
+
+      initReveal();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
